@@ -9,3 +9,6 @@ async def voice_gen(Text = '你好',
 
     tts=edge_tts.Communicate(text=Text, voice=voice, rate=rate, volume=volume)
     await tts.save(output)
+
+def non():
+    pass

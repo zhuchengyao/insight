@@ -46,7 +46,7 @@ if __name__ == '__main__':
                 list_info[1] = "增加"
             else:
                 list_info[1] = "减少"
-            aud_text = "已完成" + list_info[3]+"的销售额" + list_info[1]
+            aud_text = "已完成" + list_info[3]+"销售额的" + list_info[1]
             print(aud_text)
             asyncio.run(voice_gen(Text=aud_text))
             playsound('response.mp3')
@@ -54,7 +54,7 @@ if __name__ == '__main__':
         else:
             asyncio.run(voice_gen(Text=now_mes))
             playsound('response.mp3')
-            flag=0
+            flag = 0
 
 
 
