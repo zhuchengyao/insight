@@ -1,194 +1,75 @@
-aiohttp==3.8.6
+aiohttp==3.9.1
 aiosignal==1.3.1
-annotated-types==0.6.0
-anyio==4.2.0
-async-timeout==4.0.3
-attrs==23.1.0
+anyio @ file:///C:/ci_311/anyio_1676425491996/work/dist
+attrs==23.2.0
+Bottleneck @ file:///C:/ci_311/bottleneck_1676500016583/work
 certifi==2023.7.22
-charset-normalizer==3.3.1
-distro==1.8.0
+charset-normalizer==3.3.2
+colorama @ file:///C:/ci_311/colorama_1676422310965/work
+contourpy==1.2.0
+cycler==0.12.1
+distro @ file:///C:/b/abs_a3uni_yez3/croot/distro_1701455052240/work
 edge-tts==6.1.9
-exceptiongroup==1.2.0
 filelock==3.13.1
-frozenlist==1.4.0
-fsspec==2023.10.0
-h11==0.14.0
-httpcore==1.0.2
-httpx==0.25.2
-huggingface-hub==0.17.3
-idna==3.4
-jsonlines @ file:///tmp/build/80754af9/jsonlines_1609785323125/work
+fonttools==4.47.0
+frozenlist==1.4.1
+fsspec==2023.12.2
+h11 @ file:///tmp/build/80754af9/h11_1620423447028/work
+h2 @ file:///C:/ci_311/h2_1676441221033/work
+hpack==4.0.0
+httpcore @ file:///C:/ci_311/httpcore_1676450562509/work
+httpx @ file:///C:/ci_311/httpx_1676472852108/work
+huggingface-hub==0.20.1
+hyperframe==6.0.1
+idna @ file:///C:/ci_311/idna_1676424932545/work
+Jinja2==3.1.2
+kiwisolver==1.4.5
+MarkupSafe==2.1.3
+matplotlib==3.8.2
+mkl-fft @ file:///C:/b/abs_19i1y8ykas/croot/mkl_fft_1695058226480/work
+mkl-random @ file:///C:/b/abs_edwkj1_o69/croot/mkl_random_1695059866750/work
+mkl-service==2.4.0
+mpmath==1.3.0
 multidict==6.0.4
-numpy==1.26.1
-openai==1.5.0
+networkx==3.2.1
+numexpr @ file:///C:/b/abs_5fucrty5dc/croot/numexpr_1696515448831/work
+numpy @ file:///C:/b/abs_7267ja_mqz/croot/numpy_and_numpy_base_1701295083047/work/dist/numpy-1.26.2-cp311-cp311-win_amd64.whl#sha256=f4e43aff0bd2ec1e69abffbe07459b4dcf6ae207942d293dd3c14112aa00d380
+openai @ file:///C:/b/abs_77r1ufnb45/croot/openai_1701456919954/work
+opencv-python==4.9.0.80
 packaging==23.2
-playsound==1.3.0
-py==1.11.0
-PyAudio==0.2.13
-pydantic==2.5.2
-pydantic_core==2.14.5
-pyobjc==8.0
-pyobjc-core==8.0
-pyobjc-framework-Accessibility==8.0
-pyobjc-framework-Accounts==8.0
-pyobjc-framework-AddressBook==8.0
-pyobjc-framework-AdServices==8.0
-pyobjc-framework-AdSupport==8.0
-pyobjc-framework-AppleScriptKit==8.0
-pyobjc-framework-AppleScriptObjC==8.0
-pyobjc-framework-ApplicationServices==8.0
-pyobjc-framework-AppTrackingTransparency==8.0
-pyobjc-framework-AudioVideoBridging==8.0
-pyobjc-framework-AuthenticationServices==8.0
-pyobjc-framework-AutomaticAssessmentConfiguration==8.0
-pyobjc-framework-Automator==8.0
-pyobjc-framework-AVFoundation==8.0
-pyobjc-framework-AVKit==8.0
-pyobjc-framework-AVRouting==10.0
-pyobjc-framework-BackgroundAssets==10.0
-pyobjc-framework-BusinessChat==8.0
-pyobjc-framework-CalendarStore==8.0
-pyobjc-framework-CallKit==8.0
-pyobjc-framework-CFNetwork==8.0
-pyobjc-framework-ClassKit==8.0
-pyobjc-framework-CloudKit==8.0
-pyobjc-framework-Cocoa==8.0
-pyobjc-framework-Collaboration==8.0
-pyobjc-framework-ColorSync==8.0
-pyobjc-framework-Contacts==8.0
-pyobjc-framework-ContactsUI==8.0
-pyobjc-framework-CoreAudio==8.0
-pyobjc-framework-CoreAudioKit==8.0
-pyobjc-framework-CoreBluetooth==8.0
-pyobjc-framework-CoreData==8.0
-pyobjc-framework-CoreHaptics==8.0
-pyobjc-framework-CoreLocation==8.0
-pyobjc-framework-CoreMedia==8.0
-pyobjc-framework-CoreMediaIO==8.0
-pyobjc-framework-CoreMIDI==8.0
-pyobjc-framework-CoreML==8.0
-pyobjc-framework-CoreMotion==8.0
-pyobjc-framework-CoreServices==8.0
-pyobjc-framework-CoreSpotlight==8.0
-pyobjc-framework-CoreText==8.0
-pyobjc-framework-CoreWLAN==8.0
-pyobjc-framework-CryptoTokenKit==8.0
-pyobjc-framework-DataDetection==8.0
-pyobjc-framework-DeviceCheck==8.0
-pyobjc-framework-DictionaryServices==8.0
-pyobjc-framework-DiscRecording==8.0
-pyobjc-framework-DiscRecordingUI==8.0
-pyobjc-framework-DiskArbitration==8.0
-pyobjc-framework-DVDPlayback==8.0
-pyobjc-framework-EventKit==8.0
-pyobjc-framework-ExceptionHandling==8.0
-pyobjc-framework-ExecutionPolicy==8.0
-pyobjc-framework-ExtensionKit==10.0
-pyobjc-framework-ExternalAccessory==8.0
-pyobjc-framework-FileProvider==8.0
-pyobjc-framework-FileProviderUI==8.0
-pyobjc-framework-FinderSync==8.0
-pyobjc-framework-FSEvents==8.0
-pyobjc-framework-GameCenter==8.0
-pyobjc-framework-GameController==8.0
-pyobjc-framework-GameKit==8.0
-pyobjc-framework-GameplayKit==8.0
-pyobjc-framework-HealthKit==10.0
-pyobjc-framework-ImageCaptureCore==8.0
-pyobjc-framework-IMServicePlugIn==8.0
-pyobjc-framework-InputMethodKit==8.0
-pyobjc-framework-InstallerPlugins==8.0
-pyobjc-framework-InstantMessage==8.0
-pyobjc-framework-Intents==8.0
-pyobjc-framework-IntentsUI==8.0
-pyobjc-framework-IOBluetooth==10.0
-pyobjc-framework-IOBluetoothUI==10.0
-pyobjc-framework-IOSurface==8.0
-pyobjc-framework-iTunesLibrary==8.0
-pyobjc-framework-KernelManagement==8.0
-pyobjc-framework-LatentSemanticMapping==8.0
-pyobjc-framework-LaunchServices==8.0
-pyobjc-framework-libdispatch==8.0
-pyobjc-framework-libxpc==10.0
-pyobjc-framework-LinkPresentation==8.0
-pyobjc-framework-LocalAuthentication==8.0
-pyobjc-framework-LocalAuthenticationEmbeddedUI==8.0
-pyobjc-framework-MailKit==8.0
-pyobjc-framework-MapKit==8.0
-pyobjc-framework-MediaAccessibility==8.0
-pyobjc-framework-MediaLibrary==8.0
-pyobjc-framework-MediaPlayer==8.0
-pyobjc-framework-MediaToolbox==8.0
-pyobjc-framework-Metal==8.0
-pyobjc-framework-MetalFX==10.0
-pyobjc-framework-MetalKit==8.0
-pyobjc-framework-MetalPerformanceShaders==8.0
-pyobjc-framework-MetalPerformanceShadersGraph==8.0
-pyobjc-framework-MetricKit==8.0
-pyobjc-framework-MLCompute==8.0
-pyobjc-framework-ModelIO==8.0
-pyobjc-framework-MultipeerConnectivity==8.0
-pyobjc-framework-NaturalLanguage==8.0
-pyobjc-framework-NetFS==8.0
-pyobjc-framework-Network==8.0
-pyobjc-framework-NetworkExtension==8.0
-pyobjc-framework-NotificationCenter==8.0
-pyobjc-framework-OpenDirectory==8.0
-pyobjc-framework-OSAKit==8.0
-pyobjc-framework-OSLog==8.0
-pyobjc-framework-PassKit==8.0
-pyobjc-framework-PencilKit==8.0
-pyobjc-framework-PHASE==10.0
-pyobjc-framework-Photos==8.0
-pyobjc-framework-PhotosUI==8.0
-pyobjc-framework-PreferencePanes==8.0
-pyobjc-framework-PushKit==8.0
-pyobjc-framework-Quartz==8.0
-pyobjc-framework-QuickLookThumbnailing==8.0
-pyobjc-framework-ReplayKit==8.0
-pyobjc-framework-SafariServices==8.0
-pyobjc-framework-SafetyKit==10.0
-pyobjc-framework-SceneKit==8.0
-pyobjc-framework-ScreenCaptureKit==10.0
-pyobjc-framework-ScreenSaver==8.0
-pyobjc-framework-ScreenTime==8.0
-pyobjc-framework-ScriptingBridge==8.0
-pyobjc-framework-SearchKit==8.0
-pyobjc-framework-Security==8.0
-pyobjc-framework-SecurityFoundation==8.0
-pyobjc-framework-SecurityInterface==8.0
-pyobjc-framework-ServiceManagement==8.0
-pyobjc-framework-SharedWithYou==10.0
-pyobjc-framework-SharedWithYouCore==10.0
-pyobjc-framework-ShazamKit==8.0
-pyobjc-framework-Social==8.0
-pyobjc-framework-SoundAnalysis==8.0
-pyobjc-framework-Speech==8.0
-pyobjc-framework-SpriteKit==8.0
-pyobjc-framework-StoreKit==8.0
-pyobjc-framework-SyncServices==8.0
-pyobjc-framework-SystemConfiguration==8.0
-pyobjc-framework-SystemExtensions==8.0
-pyobjc-framework-ThreadNetwork==10.0
-pyobjc-framework-UniformTypeIdentifiers==8.0
-pyobjc-framework-UserNotifications==8.0
-pyobjc-framework-UserNotificationsUI==8.0
-pyobjc-framework-VideoSubscriberAccount==8.0
-pyobjc-framework-VideoToolbox==8.0
-pyobjc-framework-Virtualization==8.0
-pyobjc-framework-Vision==8.0
-pyobjc-framework-WebKit==8.0
-pyttsx3==2.90
+pandas @ file:///C:/b/abs_fej9bi0gew/croot/pandas_1702318041921/work/dist/pandas-2.1.4-cp311-cp311-win_amd64.whl#sha256=d3609b7cc3e3c4d99ad640a4b8e710ba93ccf967ab8e5245b91033e0200f9286
+pandas-stubs @ file:///C:/ci_311/pandas-stubs_1676484000543/work
+Pillow==10.1.0
+play-mp3==0.0.1
+playsound==1.2.0
+psutil==5.9.7
+py-cpuinfo==9.0.0
+pydantic @ file:///C:/b/abs_9byjrk31gl/croot/pydantic_1695798904828/work
+pydub==0.25.1
+pygame==2.5.2
+pyparsing==3.1.1
+pyrealsense2==2.54.2.5684
+python-dateutil @ file:///tmp/build/80754af9/python-dateutil_1626374649649/work
+pytz @ file:///C:/b/abs_19q3ljkez4/croot/pytz_1695131651401/work
 PyYAML==6.0.1
-regex==2023.10.3
+regex==2023.12.25
 requests==2.31.0
-safetensors==0.4.0
+rfc3986 @ file:///Users/ktietz/demo/mc3/conda-bld/rfc3986_1629478296451/work
+safetensors==0.4.1
+scipy==1.11.4
+seaborn==0.13.1
 six @ file:///tmp/build/80754af9/six_1644875935023/work
-sniffio==1.3.0
-SpeechRecognition==3.10.0
-tokenizers==0.14.1
-tqdm==4.66.1
-transformers==4.35.0
-typing_extensions==4.8.0
-urllib3==2.0.7
-yarl==1.9.2
+sniffio @ file:///C:/ci_311/sniffio_1676425339093/work
+sympy==1.12
+thop==0.1.1.post2209072238
+tokenizers==0.15.0
+torch==2.1.2
+torchvision==0.16.2
+tqdm @ file:///C:/b/abs_f76j9hg7pv/croot/tqdm_1679561871187/work
+transformers==4.36.2
+types-pytz @ file:///C:/ci_311/types-pytz_1676457653447/work
+typing_extensions @ file:///C:/b/abs_213vg2cd1l/croot/typing_extensions_1690297804941/work
+tzdata @ file:///croot/python-tzdata_1690578112552/work
+ultralytics==8.0.231
+urllib3==2.1.0
+yarl==1.9.4
