@@ -10,12 +10,12 @@ import asyncio
 from sales_update import sales_data_update
 from vision_module import get_xy_depth, obj_dec
 import pyrealsense2 as rs
+import email_module
 import os
 import time
 import numpy as np
 import pygame
 
-soundfile= "E:/pythonProject/insight/insight/response.mp3"
 
 
 gpt_model = "gpt-4-1106-preview"
@@ -23,36 +23,35 @@ vision_model = YOLO('yolov8n.pt')
 
 if __name__ == '__main__':
     # init OpenAI env
-    # ChatAPI = GetOpenaiAPI.GetAPI()
-    # os.environ["OPENAI_API_KEY"] = GetOpenaiAPI.GetAPI()
-    # client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-    # message_queue = []
-    # response, message_queue = init_AI_agent()
-    # message_queue = message_append(message_queue, response.choices[0].message.content)
-    # res_text = response.choices[0].message.content
-    # print(message_queue)
-    # asyncio.run(voice_gen(Text="How can I help you?"))
-    # playsound('response.mp3')
+    ChatAPI = GetOpenaiAPI.GetAPI()
+    os.environ["OPENAI_API_KEY"]=ChatAPI
+    client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"),)
+
+    message_queue = []
+    response, message_queue = init_AI_agent()
+    res_text = response.choices[0].message.content
+    message_queue = message_append(message_queue, res_text)
+    print(res_text)
+    asyncio.run(voice_gen(Text="How can I help you?"))
+    play_sound('response.mp3')
     test = 1
     flag = 1
     while True:
-        # if(flag):
-        #     req_text = input("How can I help you?\n")
-        # else:
-        #     req_text = input("Anything else I can do for you?\n")
-        # # append user content
-        # message_queue = message_append(message_queue, req_text, role='user')
-        # print(message_queue)
-        # # send request, get response
-        # response = openai.chat.completions.create(messages=message_queue, model=gpt_model)
-        # now_mes = response.choices[0].message.content
-        now_mes='@'
+        if(flag):
+            req_text = input("How can I help you?\n")
+        else:
+            req_text = input("Anything else I can do for you?\n")
+        # append user content
+        message_queue = message_append(message_queue, req_text, role='user')
+        print(message_queue)
+        # send request, get response
+        response = openai.chat.completions.create(messages=message_queue, model=gpt_model)
+        now_mes = response.choices[0].message.content
+        # now_mes = '@'
         print(now_mes)
         # append GPT response
         # message_queue = message_append(message_queue, now_mes)
-        if now_mes[0] == '$':
-            flag=0
-        elif now_mes[0]=="@":   # objection detection
+        if now_mes[0] == "#":   # objection detection
             now_mes = obj_dec()
             print(now_mes)
             # message_queue = message_append(message_queue, now_mes,'user')
@@ -62,6 +61,8 @@ if __name__ == '__main__':
             asyncio.run(voice_gen(Text=now_mes))
             play_sound()
             flag = 0
+        elif now_mes == "@":
+            email_module.email_assistant()
         else:   # only answer question
             asyncio.run(voice_gen(Text=now_mes))
             playsound('response.mp3')

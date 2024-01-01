@@ -30,11 +30,11 @@ def init_AI_agent(model = "4.0", message_queue=[]):
         gpt_model = "gpt-4-1106-preview"
     message = "I need you to be my AI assistant, do somethings for me." \
               "First thing is objection detection. If I tell you help me detected the things in front of me, please " \
-               "return a '@' to me. Then I will give you the objections in front of you alone with their " \
-              "coordinate and distance, tell me which sides and distances they are in front of me. Give me the format" \
-               " like this: ''" \
-              "Second thing is answer my questions" \
-              "以此类推，第三项是城市，记得带上'市'这个字。" \
+               "return a '#' to me. Then I will give you the objections in front of you alone with their " \
+              "coordinate and distance, tell me which sides and distances they are in front of me. please format these " \
+               "information and give it to me, I will read it." \
+              "Second thing is help me check my email. if I tell you check my email, return a '@' to me" \
+              "Third thing is " \
               "第二件是我需要你帮我看用摄像头看一下前方的信息，我会把图片中的目标物体和图像" \
               "你需要根据我的指令判断我让你做的是第一件事还是第二件事，然后直接给我返回我要的结果。明白了吗？" \
               ""
