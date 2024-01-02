@@ -1,6 +1,7 @@
 from openai import OpenAI
 import openai
 import GetOpenaiAPI
+import jsonlines
 import cv2
 from init_AI_module import init_AI_agent, message_append
 from playsound import playsound
@@ -42,6 +43,11 @@ if __name__ == '__main__':
         else:
             req_text = input("Anything else I can do for you?\n")
         # append user content
+        if req_text=='q':
+            with jsonlines.open('./data.jsonl', 'a') as f:
+                for line in message_queue:
+                    f.write(line)
+            break
         message_queue = message_append(message_queue, req_text, role='user')
         print(message_queue)
         # send request, get response
@@ -53,16 +59,20 @@ if __name__ == '__main__':
         # message_queue = message_append(message_queue, now_mes)
         if now_mes[0] == "#":   # objection detection
             now_mes = obj_dec()
+            message_queue = message_append(message_queue, now_mes, role='user')
+            response = openai.chat.completions.create(messages=message_queue, model=gpt_model)
+            now_mes = response.choices[0].message.content
             print(now_mes)
             # message_queue = message_append(message_queue, now_mes,'user')
             # response = openai.chat.completions.create(messages=message_queue, model=gpt_model)
             # print(response)
             # now_mes = response.choices[0].message.content
-            asyncio.run(voice_gen(Text=now_mes))
-            play_sound()
+            asyncio.run(voice_gen(Text=now_mes, output='E:/pythonProject/insight/insight/response_vision.mp3'))
+            play_sound(soundfile='E:/pythonProject/insight/insight/response_vision.mp3')
             flag = 0
-        elif now_mes == "@":
+        elif now_mes[0] == "@":
             email_module.email_assistant()
+            flag = 0
         else:   # only answer question
             asyncio.run(voice_gen(Text=now_mes, output='E:/pythonProject/insight/insight/response_conv.mp3'))
             play_sound(soundfile='E:/pythonProject/insight/insight/response_conv.mp3')

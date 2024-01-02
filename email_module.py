@@ -1,5 +1,6 @@
 import time
 import GetOpenaiAPI
+
 import os
 import openai
 from openai import OpenAI
@@ -30,14 +31,16 @@ def message_append(message_queue, content, role="assistant"):
     return message_queue
 
 
-def send_email(to_whom, content, sender=Email_Address):
-    msg = EmailMessage()
-    msg['Subject'] = 'Yao reply'
-    msg['From'] = sender
-    msg['To'] = to_whom
-    msg.set_content(content)
-    smtp = smtplib.SMTP_SSL(host='smtp.exmail.qq.com', port=465)
-    smtp.send_message(msg)
+def send_email(to_whom, content, sender=Email_Address, password=Password):
+    with smtplib.SMTP_SSL(host='smtp.exmail.qq.com', port=465) as server:
+        server.login(Email_Address, password)
+        server.ehlo()
+        msg = EmailMessage()
+        msg['Subject'] = 'Yao reply'
+        msg['From'] = sender
+        msg['To'] = to_whom
+        msg.set_content(content)
+        server.send_message(msg)
 
 
 def read_unseen_email(Email_Address=Email_Address, Password=Password):
@@ -89,11 +92,10 @@ def read_unseen_email(Email_Address=Email_Address, Password=Password):
 # 发件人邮箱账号
 def email_assistant():
     # user登录邮箱的用户名，password登录邮箱的密码（授权码，即客户端密码，非网页版登录密码），但用腾讯邮箱的登录密码也能登录成功
-    Email_PassWord = Password
     server = imaplib.IMAP4_SSL(host='imap.exmail.qq.com', port=993)
     server.login(Email_Address, Password)
     smtp = smtplib.SMTP_SSL(host='smtp.exmail.qq.com', port=465)
-    smtp.login(Email_Address, Email_PassWord)
+    smtp.login(Email_Address, Password)
 
     ChatAPI= GetOpenaiAPI.GetAPI()
 
@@ -103,11 +105,11 @@ def email_assistant():
     #     api_key=os.environ.get(ChatAPI),
     # )
 
-    message = ("hello, this is Yao, You are going to be my email assistant. I will give my unread email in format of :"
-               "'from:  content:' help me generate important information and tell me. If I want you help me reply the email"
-               "then format the output like this: '$|target_email_address|content'. I will tell you who you gonna reply and "
-               "the content. For example, if pchiang@fudan.edu.cn send me an email and I tell you reply to him 'I will be "
-               "there, then you give me '$|pichiang@fudan.edu.cn|I will be there'. if you understand me, say yes" )
+    message = ("hello, You are going to be my email assistant. I will give my unread email in format of :"
+               "'from:  content:' help me generate important information and tell me. After you give me the information about these emails, I will tell you if I want you to help me reply a email, "
+               "If I want you to reply the email for me, please format the output like this: '$|target_email_address|content'. I will tell you who you gonna reply and "
+               "the content. For example, if pchiang@fudan.edu.cn send me an email and I send you message like 'tell him 'I will be there', or reply to him 'I will be "
+               "there, then you give me '$|pichiang@fudan.edu.cn|I will be there'. otherwise, I don't want to reply it, just say 'pass' to me." )
     message_queue = []
     message_queue = message_append(message_queue, message, "user")
 
@@ -125,11 +127,13 @@ def email_assistant():
     while step:
         unread_message = read_unseen_email()
         while unread_message == 0:
-            time.sleep(60)
+            time.sleep(2)
             unread_message = read_unseen_email()
             step -= 1
             if step==0:
-                return("You don't have any new email at this moment")
+                asyncio.run(voice_gen(Text="You don't have any new email at this moment", output='E:/pythonProject/insight/insight/response_email.mp3'))
+                play_sound(soundfile='E:/pythonProject/insight/insight/response_email.mp3')
+                return
         # now_mes = "$|czhu@aum.edu|I will be there"
         message_queue = message_append(message_queue, unread_message, "user")
         response = openai.chat.completions.create(
@@ -137,8 +141,9 @@ def email_assistant():
             model=gpt_model,
         )
         now_mes = response.choices[0].message.content
-        asyncio.run(voice_gen(Text=now_mes))
-        play_sound()
+        asyncio.run(voice_gen(Text=now_mes,
+                              output='E:/pythonProject/insight/insight/response_email.mp3'))
+        play_sound(soundfile='E:/pythonProject/insight/insight/response_email.mp3')
         print(now_mes)
         content_mes = input()
         message_queue = message_append(message_queue, content_mes, "user")
@@ -148,14 +153,15 @@ def email_assistant():
         )
         now_mes = response.choices[0].message.content
 
-        # print(now_mes)
+        print(now_mes)
         if (now_mes[0] == '$'):
             list_info = now_mes.split('|')
             print(list_info)
             sending_content = f"Subject: AI assistant reply\n\n{list_info[2]}"
-            send_email(list_info[1], list_info[2])
-            asyncio.run(voice_gen(Text="I have replied the email for you."))
-            play_sound()
+            send_email(list_info[1], list_info[2], Email_Address, Password)
+            asyncio.run(voice_gen(Text="I have replied the email for you. You don't have any new email at this moment.",
+                                  output='E:/pythonProject/insight/insight/response_email_2.mp3'))
+            play_sound(soundfile='E:/pythonProject/insight/insight/response_email_2.mp3')
             break
         else:
             pass
