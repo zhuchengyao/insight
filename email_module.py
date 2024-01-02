@@ -12,7 +12,7 @@ from sound_module import play_sound,voice_gen
 import asyncio
 
 Email_Address = '23262010051@m.fudan.edu.cn'
-Password = "PsYX8Tcd3BMbSapD"
+Password = GetOpenaiAPI.Get_Email_API()
 
 
 def message_append(message_queue, content, role="assistant"):
@@ -125,7 +125,7 @@ def email_assistant():
     while step:
         unread_message = read_unseen_email()
         while unread_message == 0:
-            time.sleep(600)
+            time.sleep(60)
             unread_message = read_unseen_email()
             step -= 1
             if step==0:

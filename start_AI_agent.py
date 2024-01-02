@@ -24,7 +24,7 @@ vision_model = YOLO('yolov8n.pt')
 if __name__ == '__main__':
     # init OpenAI env
     ChatAPI = GetOpenaiAPI.GetAPI()
-    os.environ["OPENAI_API_KEY"]=ChatAPI
+    os.environ["OPENAI_API_KEY"] = ChatAPI
     client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"),)
 
     message_queue = []
@@ -64,8 +64,8 @@ if __name__ == '__main__':
         elif now_mes == "@":
             email_module.email_assistant()
         else:   # only answer question
-            asyncio.run(voice_gen(Text=now_mes))
-            playsound('response.mp3')
+            asyncio.run(voice_gen(Text=now_mes, output='E:/pythonProject/insight/insight/response_conv.mp3'))
+            play_sound(soundfile='E:/pythonProject/insight/insight/response_conv.mp3')
             flag = 0
 
 
