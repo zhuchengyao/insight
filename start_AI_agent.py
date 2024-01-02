@@ -53,6 +53,7 @@ if __name__ == '__main__':
         # send request, get response
         response = openai.chat.completions.create(messages=message_queue, model=gpt_model)
         now_mes = response.choices[0].message.content
+        message_queue = message_append(message_queue, req_text)
         # now_mes = '@'
         print(now_mes)
         # append GPT response
